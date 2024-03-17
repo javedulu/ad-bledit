@@ -1,7 +1,6 @@
 import bpy
 import sys
 import os,math,webbrowser,json
-import app.blender as blenderApp
 import os
 basepath = (os.path.dirname(os.path.join(os.getcwd(),__file__)))
 sys.path.append(os.path.join(basepath,'pymap-0.0.1-py3.10-macosx-14.3-arm64.egg'))
@@ -37,34 +36,6 @@ class OSM_OT_GetMapboxToken(bpy.types.Operator):
         import webbrowser
         webbrowser.open_new_tab(self.url)
         return {'FINISHED'}
-
-class S1M3n8Preferences(bpy.types.AddonPreferences):
-    bl_idname = __name__
-    dataDir: bpy.props.StringProperty(
-        name = '',
-        subtype = 'DIR_PATH',
-        description = "Directory to store downloaded OpenStreetMap and terrain files"
-    )
-    mapboxAccessToken: bpy.props.StringProperty(
-        name = "Mapbox access token",
-        description = "A string token to access overlays from Mapbox company"
-    )
-    osmServer: bpy.props.EnumProperty(
-        name = "OSM data server",
-        items = (
-            ("overpass-api.de", "overpass-api.de: 8 cores, 128 GB RAM", "overpass-api.de: 8 cores, 128 GB RAM"),
-            ("vk maps", "VK Maps: 56 cores, 384 GB RAM", "VK Maps: 56 cores, 384 GB RAM"),
-            ("kumi.systems", "kumi.systems: 20 cores, 256 GB RAM", "kumi.systems: 20 cores, 256 GB RAM")
-        ),
-        description = "OSM data server if the default one is inaccessible",
-        default = "overpass-api.de"
-    )
-
-    def draw(self, context):
-        layout = self.layout
-        split = layout.split(factor=0.9)
-        split.prop(self, "mapboxAccessToken")
-        split.operator("osm.get_mapbox_token", text="Get it!")
 
 
 
@@ -133,7 +104,7 @@ class OSM_OT_ImportData(bpy.types.Operator):
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self,context):
-        app = blenderApp.app
+        pass
 
 class OSM_OT_ExportData(bpy.types.Operator):
     """Import data : OSM with / without terrain """
@@ -143,7 +114,7 @@ class OSM_OT_ExportData(bpy.types.Operator):
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self,context):
-        app = blenderApp.app
+        pass
 
 class OSM_OT_SelectDirections(bpy.types.Operator):
     bl_idname = "osm.select_directions"
