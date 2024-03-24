@@ -17,6 +17,9 @@ Autonomous Driving Scene Editor addon for blender
 * Open Drive 1.7 Export form Open Street Map - [*To Be Done*]
 * AutoDesk FBX / Pixar USDZ export (Blender) - [*To Be Done*]
 
+### Requirements 
+- Blender Dev Branch (universal scene description) [USD](https://builder.blender.org/download/experimental/)
+
 ### Platforms
 * Mac OS X  [14.3 Sonoma](https://www.apple.com/macos/sonoma/) - Apple Silicon
 * Linux  (Coming soon ..)

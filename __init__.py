@@ -12,12 +12,12 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 bl_info = {
-    "name" : "s1m3n8",
+    "name" : "ads1m",
     "author" : "Javed Shaik <javedulu@gmail.com>",
     "description" : "Autonmous Driving Simulation",
     "blender" : (2, 80, 0),
     "version" : (0, 0, 1),
-    "location" : "View 3D > Sidebar > \"s1m3n8\" tab",
+    "location" : "View 3D > Sidebar > \"ads1m\" tab",
     "tracker_url": "https://github.com/javedulu/ad-bledit/issues",
     "doc_url": "https://github.com/javedulu/ad-bledit/blob/main/README.md",
     "warning" : "",
@@ -28,23 +28,29 @@ import bpy
 from bpy.types import Operator, AddonPreferences
 from bpy.props import StringProperty, IntProperty, BoolProperty
 
-class S1M3n8Preferences(bpy.types.AddonPreferences):
+from . import s1mapp as blenderApp
+
+
+
+class S1m3n8Preferences(bpy.types.AddonPreferences):
     bl_idname = __name__
     dataDir: bpy.props.StringProperty(
         name = '',
         subtype = 'DIR_PATH',
-        description = "Directory to store downloaded OpenStreetMap and terrain files"
+        description = "Directory to store downloaded OpenStreetMap and terrain files",
+        default = "/tmp/"
     )
     mapboxAccessToken: bpy.props.StringProperty(
         name = "Mapbox Token",
-        description = "A string token to access directions from Mapbox company"
+        description = "A string token to access directions from Mapbox company",
+        default = ""
     )
     osmServer: bpy.props.EnumProperty(
         name = "OSM data server",
         items = (
             ("overpass-api.de", "overpass-api.de: 8 cores, 128 GB RAM", "overpass-api.de: 8 cores, 128 GB RAM"),
-            ("vk maps", "VK Maps: 56 cores, 384 GB RAM", "VK Maps: 56 cores, 384 GB RAM"),
-            ("kumi.systems", "kumi.systems: 20 cores, 256 GB RAM", "kumi.systems: 20 cores, 256 GB RAM")
+            ("maps.mail.ru/osm/tools/overpass", "VK Maps: 56 cores, 384 GB RAM", "VK Maps: 56 cores, 384 GB RAM"),
+            ("overpass.kumi.systems", "kumi.systems: 20 cores, 256 GB RAM", "kumi.systems: 20 cores, 256 GB RAM")
         ),
         description = "OSM data server if the default one is inaccessible",
         default = "overpass-api.de"
@@ -59,7 +65,7 @@ class S1M3n8Preferences(bpy.types.AddonPreferences):
         split.operator("osm.get_mapbox_token", text="Link !")
         layout.prop(self, "osmServer")
 
-
+blenderApp.app.addonName = S1m3n8Preferences.bl_idname
 
 from . import auto_load
 
@@ -67,9 +73,9 @@ auto_load.init()
 
 
 def register():
-    bpy.utils.register_class(S1M3n8Preferences)
+    bpy.utils.register_class(S1m3n8Preferences)
     auto_load.register()
 
 def unregister():
-    bpy.utils.unregister_class(S1M3n8Preferences)
+    bpy.utils.unregister_class(S1m3n8Preferences)
     auto_load.unregister()
