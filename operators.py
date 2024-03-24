@@ -301,7 +301,7 @@ class S1M_OT_sync_state(bpy.types.Operator):
 class S1M_PT_OSM_panel_create(bpy.types.Panel):
     bl_idname = 'S1M_PT_OSM_panel_create'
     bl_label = 'OSM'
-    bl_category = 's1m3n8'
+    bl_category = 'ADS1M'
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
     bl_context = 'objectmode'
