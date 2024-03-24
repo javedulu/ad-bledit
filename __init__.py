@@ -12,12 +12,12 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 bl_info = {
-    "name" : "ads1m",
+    "name" : "ADS1M",
     "author" : "Javed Shaik <javedulu@gmail.com>",
     "description" : "Autonmous Driving Simulation",
     "blender" : (2, 80, 0),
     "version" : (0, 0, 1),
-    "location" : "View 3D > Sidebar > \"ads1m\" tab",
+    "location" : "View 3D > Sidebar > \"ADS1M\" tab",
     "tracker_url": "https://github.com/javedulu/ad-bledit/issues",
     "doc_url": "https://github.com/javedulu/ad-bledit/blob/main/README.md",
     "warning" : "",
@@ -32,7 +32,7 @@ from . import s1mapp as blenderApp
 
 
 
-class S1m3n8Preferences(bpy.types.AddonPreferences):
+class ADS1MPreferences(bpy.types.AddonPreferences):
     bl_idname = __name__
     dataDir: bpy.props.StringProperty(
         name = '',
@@ -65,7 +65,7 @@ class S1m3n8Preferences(bpy.types.AddonPreferences):
         split.operator("osm.get_mapbox_token", text="Link !")
         layout.prop(self, "osmServer")
 
-blenderApp.app.addonName = S1m3n8Preferences.bl_idname
+blenderApp.app.addonName = ADS1MPreferences.bl_idname
 
 from . import auto_load
 
@@ -73,9 +73,9 @@ auto_load.init()
 
 
 def register():
-    bpy.utils.register_class(S1m3n8Preferences)
+    bpy.utils.register_class(ADS1MPreferences)
     auto_load.register()
 
 def unregister():
-    bpy.utils.unregister_class(S1m3n8Preferences)
+    bpy.utils.unregister_class(ADS1MPreferences)
     auto_load.unregister()
